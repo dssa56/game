@@ -1,0 +1,1 @@
+#define RENDER_TIME_DELAY 500
