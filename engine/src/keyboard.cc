@@ -8,16 +8,16 @@ void get_move_from_event(event, &move)
         switch(event.key.keysym.sym)
         {
           case SDLK_LEFT:
-            move[0] = -1;
+            move[1] = -1;
             break;
           case SDLK_RIGHT:
-            move[0] = 1;
-            break;
-          case SDLK_UP:
             move[1] = 1;
             break;
+          case SDLK_UP:
+            move[0] = 1;
+            break;
           case SDLK_DOWN:
-            move[1] = -1;
+            move[0] = -1;
             break;
           default:
             break;
@@ -26,16 +26,16 @@ void get_move_from_event(event, &move)
         switch(event.key.keysym.sym)
         {
           case SDLK_LEFT:
-            move[0] = 0;
+            move[1] = 0;
             break;
           case SDLK_RIGHT:
-            move[0] = 0;
+            move[1] = 0;
             break;
           case SDLK_UP:
-            move[1] = 0;
+            move[0] = 0;
             break;
           case SDLK_DOWN:
-            move[1] = 0;
+            move[0] = 0;
             break;
           default:
             break;

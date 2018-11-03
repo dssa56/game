@@ -68,6 +68,7 @@ class MobileObject: public GameObject
 public:
   using GameObject::GameObject;
   void update(GameObject& player; std::vector<GameObject> stats);
+  void collide(std::vector<float>& velocity, std::vector<GameObject> stats);
   void move(std::vector<float>& velocity);
 }
 
@@ -76,6 +77,13 @@ MobileObject::update(PlayerObject& player; std::vector<GameObject> stats)
   std::vector<float> velocity{0, 0};
   velocity[0] = (player.position.x > position.x) ? 1 : -1;
   velocity[1] = (player.position.y > position.y) ? 1 : -1;
+  this.collide(velocity, stats);
+  this.move(velocity);
+}
+
+MobileObject::collide(std::vector<float>& velocity,
+                        std::vector<GameObject> stats)
+{
   for(auto& stat : stats)
   {
     std::vector<bool> is_collided = (
@@ -85,13 +93,28 @@ MobileObject::update(PlayerObject& player; std::vector<GameObject> stats)
     if(is_collided[1])
       velocity[1] = 0;
   }
-  this.move(velocity);
 }
 
 MobileObject::move(std::vector<float> velocity)
 {
   position.y += velocity[0];
   position.x += velocity[1];
+}
+
+class PlayerObject: GameObject
+{
+public:
+  using GameObject::GameObject;
+  void update(std::vector<int> move);
+}
+
+PlayerObject::update(std::vector<int> move)
+{
+  std::vector<float> velocity = move;
+  for(auto& v : velocity)
+    v *= PLAYER_VELOCITY;
+  this.collide(velocity, stats);
+  this.move(velocity);
 }
 
 class Canvas
@@ -127,19 +150,7 @@ template <typename T>
 void render_loop(SDL_Renderer *ren, std::vector<T>objs)
 {
   for(auto& obj: objs)
-  GameObject
-  {
-  public:
-    GameObject();
-    void update(MobileObject& player, std::vector<GameObject> statics)
-private:
-friend class Canvas
-
-
-  }
     SDL_RenderCopy(renderer, obj.texture, NULL, obj.position);
-  }
-
 }
 
 void Canvas::display_scene(std::vector<MobileObject> mobs,

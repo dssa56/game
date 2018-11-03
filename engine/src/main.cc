@@ -1,6 +1,6 @@
 #include <SDL2/SDL.h>
 #include <vector>
-#include "gamestate.h"
+#include "object.h"
 #include "keyboard.h"
 
 int main()
@@ -22,7 +22,7 @@ int main()
         break;
       }
       get_move_from_event(event, move_xy);
-      gamestate.player.move(move_xy);
+      gamestate.player.update(move_xy);
       gamestate.render();
     }
   }
